@@ -16,5 +16,5 @@ Forum web-api [Categories, Groups, Threads, Posts]
 * Implement different post/thread reactions
 
 
-
+## Database Schema ##
 ![Database](https://github.com/RedCaplan/Forum_backend/blob/master/database.png?raw=true)
