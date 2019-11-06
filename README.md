@@ -1,5 +1,10 @@
 # Forum_backend
-forum web-api
+Forum web-api [Categories, Groups, Threads, Posts]
+
+### Login ###
+* Email : test@gmail.com
+* Pass : testpassword
+
 
 ### Features to add ###
 * Unit-testing
@@ -7,8 +12,8 @@ forum web-api
 * CLI
 
 #### Forum improvement ####
-Сhange forum management from groups tables to asp.net core Roles
-Implement different post/thread reactions
+* Сhange forum management from groups tables to asp.net core Roles
+* Implement different post/thread reactions
 
 
 
