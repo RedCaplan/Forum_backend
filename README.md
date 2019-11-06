@@ -1,6 +1,8 @@
 # Forum_backend
 Forum web-api [Categories, Groups, Threads, Posts]
 
+## **Controllers are not finished** ##
+
 ### Login ###
 * Email : test@gmail.com
 * Pass : testpassword
