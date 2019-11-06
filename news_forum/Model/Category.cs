@@ -37,13 +37,13 @@ namespace news_forum.Model
             SubCategories = new HashSet<Category>();
         }
 
-        public Category(string name, string description, Category parentCategory = null, Status status = Status.APPROVED): this()
+        public Category(string name, string description, int? parentCategoryID = null, Status status = Status.APPROVED): this()
         {
             Name = name;
             Description = description;
             LatinName = name.CyrilicToLatin();
             Status = status;
-            ParentCategory = parentCategory;
+            ParentCategoryID = parentCategoryID;
             Created = DateTime.Now;
         }
         #endregion

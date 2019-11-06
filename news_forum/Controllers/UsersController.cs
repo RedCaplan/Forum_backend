@@ -115,7 +115,7 @@ namespace news_forum.Controllers
         [HttpGet("EmailUnique")]
         public async Task<ActionResult<bool>> CheckIfEmailUnique(string mail)
         {
-            return UM.FindByEmailAsync(mail).Result == null;
+            return await UM.FindByEmailAsync(mail) == null;
         }
 
         #endregion
@@ -146,7 +146,7 @@ namespace news_forum.Controllers
                 claims,
                 expires: DateTime.Now.AddHours(4),
                 signingCredentials: creds);
-
+            JwtSecurityTokenHandler.DefaultMapInboundClaims = true;
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
         #endregion

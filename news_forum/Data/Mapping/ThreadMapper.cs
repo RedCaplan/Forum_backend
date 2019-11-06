@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using news_forum.Model;
+using NJsonSchema.Infrastructure;
 
 namespace news_forum.Data.Mapping
 {
@@ -17,6 +18,10 @@ namespace news_forum.Data.Mapping
 
             builder.Property(t => t.Subject).IsRequired().HasMaxLength(200);
             builder.Property(t => t.Description).IsRequired().HasMaxLength(1000);
+
+            builder.HasOne(t => t.Category)
+                .WithMany()
+                .OnDelete(DeleteBehavior.Cascade);
 
             #endregion
         }

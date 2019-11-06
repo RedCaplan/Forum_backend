@@ -13,14 +13,12 @@ namespace news_forum.Data
     {
         private ApplicationDbContext _context { get; set; }
         private readonly UserManager<UserAccount> _um;
-        private IConfiguration _config;
         private UserAccount _testUserAccount;
 
         public DataInitializer(ApplicationDbContext context, UserManager<UserAccount> um, IConfiguration config)
         {
             _context = context;
             _um = um;
-            _config = config;
         }
 
         public void Seed()
@@ -64,14 +62,14 @@ namespace news_forum.Data
         private void AddCategories()
         {
             var parentCategory = new Category("Community", "Community");
+            _context.Categories.Add(parentCategory);
+
             var categories = new Category[]
             {
-                new Category("General Discuss", "General discussion about the ...", parentCategory),
-                new Category("Feedback", "Tell us how to improve Forum!",parentCategory)
+                new Category("General Discuss", "General discussion about the ...", parentCategory.ID),
+                new Category("Feedback", "Tell us how to improve Forum!",parentCategory.ID)
             };
 
-
-            _context.Categories.Add(parentCategory);
             _context.Categories.AddRange(categories);
             _context.SaveChanges();
         }

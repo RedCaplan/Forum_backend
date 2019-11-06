@@ -22,6 +22,10 @@ namespace news_forum.Data.Mapping
                 .WithOne(p => p.ReplyPost)
                 .HasForeignKey(p => p.ReplyPostID);
 
+            builder.HasOne(p => p.Thread)
+                .WithMany()
+                .OnDelete(DeleteBehavior.Cascade);
+
             #endregion
         }
     }

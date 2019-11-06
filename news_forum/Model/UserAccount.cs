@@ -29,6 +29,9 @@ namespace news_forum.Model
         //#region Constructor
         public UserAccount() : base()
         {
+            UserGroups = new List<UserGroup>();
+            Threads = new List<Thread>();
+            Posts = new List<Post>();
         }
         //#endregion
     }

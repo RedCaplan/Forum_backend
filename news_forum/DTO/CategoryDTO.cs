@@ -30,6 +30,9 @@ namespace news_forum.DTO
 
         [Required]
         public string Status { get; set; }
+
+        [Required]
+        public int? ParentCategoryID { get; set; }
         #endregion
 
         #region Constructor
@@ -43,6 +46,7 @@ namespace news_forum.DTO
             Created = category.Created;
             SubCategories = category.SubCategories.Select(c=>new CategoryDTO(c)).ToList();
             Status = Enum.GetName(typeof(Status), category.Status);
+            ParentCategoryID = category.ParentCategoryID;
         }
 
         #endregion
