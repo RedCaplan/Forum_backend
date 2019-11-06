@@ -11,7 +11,8 @@ Forum web-api [Categories, Groups, Threads, Posts]
 ### Features to add ###
 * Unit-testing
 * Angular front-end
-* CLI
+* Docker
+* CI/CD
 
 #### Forum improvement ####
 * Сhange forum management from groups tables to asp.net core Roles
