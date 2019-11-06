@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 using news_forum.Model.EFClasses;
-using news_forum.Model.Enums;
 
 namespace news_forum.DTO
 {

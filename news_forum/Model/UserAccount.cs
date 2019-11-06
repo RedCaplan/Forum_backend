@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
-using news_forum.DTO;
 using news_forum.Model.EFClasses;
 using news_forum.Model.Enums;
 

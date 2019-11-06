@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -16,7 +14,7 @@ using news_forum.Data.Repository;
 using news_forum.Model;
 using news_forum.Model.Interfaces;
 using NSwag;
-using NSwag.Generation.Processors.Security;
+using NSwag.SwaggerGeneration.Processors.Security;
 
 namespace news_forum
 {
@@ -50,19 +48,19 @@ namespace news_forum
                 .AddScoped<IThreadRepository, ThreadRepository>()
                 .AddScoped<IVotesRepository, VotesRepository>();
 
-            services.AddSwaggerDocument(config => {
-                config.Description = "The cutest API for the cutest forum";
-                config.Version = "Alpha";
-                config.Title = "Forum API";
-                config.DocumentName = "Forum API";
-                config.DocumentProcessors.Add(new SecurityDefinitionAppender("JWT Token",
-                    new OpenApiSecurityScheme
-                    {
-                        Type = OpenApiSecuritySchemeType.ApiKey,
-                        Name = "Authorization",
-                        Description = "Copy 'Bearer ' + valid JWT token into field",
-                        In = OpenApiSecurityApiKeyLocation.Header
-                    }));
+            services.AddOpenApiDocument(d => {
+                d.Description = "The cutest API for the cutest forum";
+                d.Version = "Alpha";
+                d.Title = "Forum API";
+                d.DocumentName = "Forum API";
+                d.DocumentProcessors.Add(new SecurityDefinitionAppender("JWT Token", new SwaggerSecurityScheme
+                {
+                    Type = SwaggerSecuritySchemeType.ApiKey,
+                    Name = "Authorization",
+                    In = SwaggerSecurityApiKeyLocation.Header,
+                    Description = "Copy 'Bearer' + valid JWT token into field"
+                }));
+                d.OperationProcessors.Add(new OperationSecurityScopeProcessor("JWT Token"));
             });
 
 
