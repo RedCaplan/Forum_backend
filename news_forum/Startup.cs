@@ -120,6 +120,7 @@ namespace news_forum
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                di.Seed();
             }
             else
             {
@@ -138,7 +139,6 @@ namespace news_forum
 
             app.UseSwaggerUi3();
             app.UseOpenApi();
-            di.Seed();
         }
     }
 }

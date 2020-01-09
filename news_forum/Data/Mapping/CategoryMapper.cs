@@ -20,7 +20,6 @@ namespace news_forum.Data.Mapping
             builder.HasMany(c => c.SubCategories)
                 .WithOne(c => c.ParentCategory)
                 .HasForeignKey(c => c.ParentCategoryID)
-                .OnDelete(DeleteBehavior.Cascade);
 
             #endregion
         }
