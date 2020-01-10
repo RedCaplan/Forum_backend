@@ -1,24 +1,28 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Forum.Model;
+using Forum.Model.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using news_forum.Model;
-using news_forum.Model.Interfaces;
 
-namespace news_forum.Data.Repository
+namespace Forum.Data.Repository
 {
     public class VotesRepository : IVotesRepository
     {
-        #region Attributes
+        #region Fields
+
         private readonly DbSet<Votes> _votes;
         private readonly ApplicationDbContext _context;
+
         #endregion
 
         #region Constructor
+
         public VotesRepository(ApplicationDbContext context)
         {
             _votes = context.Votes;
             _context = context;
         }
+
         #endregion
 
         #region Interface Methods
@@ -52,6 +56,7 @@ namespace news_forum.Data.Repository
         {
             _context.SaveChanges();
         }
+
         #endregion
     }
 }

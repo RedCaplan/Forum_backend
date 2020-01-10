@@ -1,5 +1,9 @@
 ﻿using System;
 using System.Text;
+using Forum.Data;
+using Forum.Data.Repository;
+using Forum.Model;
+using Forum.Model.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -9,14 +13,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using news_forum.Data;
-using news_forum.Data.Repository;
-using news_forum.Model;
-using news_forum.Model.Interfaces;
 using NSwag;
 using NSwag.SwaggerGeneration.Processors.Security;
 
-namespace news_forum
+namespace Forum
 {
     public class Startup
     {
@@ -31,12 +31,9 @@ namespace news_forum
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-       
-
             //Add db Context and use the connection string found in appsettings.json
             services.AddDbContext<ApplicationDbContext>(options=>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
 
             //scope data initializer
             services.AddScoped<DataInitializer>();
@@ -48,6 +45,7 @@ namespace news_forum
                 .AddScoped<IThreadRepository, ThreadRepository>()
                 .AddScoped<IVotesRepository, VotesRepository>();
 
+            //add api documentation
             services.AddOpenApiDocument(d => {
                 d.Description = "The cutest API for the cutest forum";
                 d.Version = "Alpha";
@@ -63,9 +61,7 @@ namespace news_forum
                 d.OperationProcessors.Add(new OperationSecurityScopeProcessor("JWT Token"));
             });
 
-
-
-
+            //add identity options
             services.AddDefaultIdentity<UserAccount>(options =>
                 {
                     // Password settings.
@@ -89,12 +85,14 @@ namespace news_forum
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultUI();
 
+            
             services.AddCors(options => options.AddPolicy("AllowAllOrigins", builder => builder.AllowAnyOrigin()));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             Services = services.BuildServiceProvider();
 
+            //add jwt token authentication
             services.AddAuthentication(x => {
                 x.DefaultAuthenticateScheme =
                 JwtBearerDefaults.AuthenticationScheme;
@@ -116,7 +114,6 @@ namespace news_forum
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, DataInitializer di)
         {
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -124,7 +121,6 @@ namespace news_forum
             }
             else
             {
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 

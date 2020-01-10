@@ -1,11 +1,13 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace news_forum.DTO
+namespace Forum.DTO
 {
     public class RegisterDTO:LoginDTO
     {
-        private DateTime _birthDay;
+        #region Properties
+
+        private DateTime _birthDay { get; set; }
 
         [Required(ErrorMessage = "Provide at least a username")]
         [MinLength(3, ErrorMessage = "The username has to be at least 3 characters long")]
@@ -14,7 +16,9 @@ namespace news_forum.DTO
 
         [Required(ErrorMessage = "Please provide a birthday")]
         [DataType(DataType.Date)]
-        public DateTime BirthDay { get => _birthDay; set {
+        public DateTime BirthDay {
+            get => _birthDay;
+            set {
                 if (value.Year < 1901)
                 {
                     throw new Exception("Birthday can't be smaller then 1900");
@@ -28,5 +32,7 @@ namespace news_forum.DTO
                 _birthDay = value;
             }
         }
+
+        #endregion
     }
 }

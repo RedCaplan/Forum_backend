@@ -1,25 +1,29 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Forum.Model;
+using Forum.Model.Enums;
+using Forum.Model.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using news_forum.Model;
-using news_forum.Model.Enums;
-using news_forum.Model.Interfaces;
 
-namespace news_forum.Data.Repository
+namespace Forum.Data.Repository
 {
     public class PostRepository : IPostRepository
     {
-        #region Attributes
+        #region Fields
+
         private readonly DbSet<Post> _posts;
         private readonly ApplicationDbContext _context;
+
         #endregion
 
         #region Constructor
+
         public PostRepository(ApplicationDbContext context)
         {
             _posts = context.Posts;
             _context = context;
         }
+
         #endregion
 
         #region Interface Methods

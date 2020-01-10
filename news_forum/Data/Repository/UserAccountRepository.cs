@@ -1,23 +1,27 @@
 ﻿using System.Linq;
+using Forum.Model;
+using Forum.Model.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using news_forum.Model;
-using news_forum.Model.Interfaces;
 
-namespace news_forum.Data.Repository
+namespace Forum.Data.Repository
 {
     public class UserAccountRepository : IUserAccountRepository
     {
-        #region Attributes
+        #region Fields
+
         private readonly DbSet<UserAccount> _users;
         private readonly ApplicationDbContext _context;
+
         #endregion
 
         #region Constructor
+
         public UserAccountRepository(ApplicationDbContext context)
         {
             _users = context.UserAccounts;
             _context = context;
         }
+
         #endregion
 
         #region Interface Methods
@@ -52,6 +56,7 @@ namespace news_forum.Data.Repository
         {
             _context.SaveChanges();
         }
+
         #endregion
     }
 }

@@ -1,14 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Forum.Model.EFClasses;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using news_forum.Model.EFClasses;
 
-namespace news_forum.Data.Mapping
+namespace Forum.Data.Mapping
 {
     public class UserGroupMapper : IEntityTypeConfiguration<UserGroup>
     {
         public void Configure(EntityTypeBuilder<UserGroup> builder)
         {
             #region Mapping
+
             builder.ToTable("User_Group");
             builder.HasKey(ug => new { ug.UserAccountId, ug.GroupID });
 
@@ -23,6 +24,7 @@ namespace news_forum.Data.Mapping
                 .HasForeignKey(ug => ug.GroupID)
                 .HasPrincipalKey(g => g.ID)
                 .OnDelete(DeleteBehavior.Cascade);
+
             #endregion
         }
     }

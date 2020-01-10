@@ -1,31 +1,38 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Forum.Model;
+using Forum.Model.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using news_forum.Model;
-using news_forum.Model.Interfaces;
 
-namespace news_forum.Data.Repository
+namespace Forum.Data.Repository
 {
     public class CategoryRepository : ICategoryRepository
     {
-        #region Attributes
+        #region Fields
+
         private readonly DbSet<Category> _categories;
         private readonly ApplicationDbContext _context;
+
         #endregion
 
         #region Constructor
+
         public CategoryRepository(ApplicationDbContext context)
         {
             _categories = context.Categories;
             _context = context;
         }
+
         #endregion
 
         #region Interface Methods
 
         public ICollection<Category> GetAllCategories()
         {
-            return _categories.Include(c=>c.SubCategories).ToList().Where(c=>c.ParentCategory==null).ToList();
+            return _categories
+                .Include(c=>c.SubCategories)
+                .Where(c=>c.ParentCategory==null)
+                .ToList();
         }
 
         public Category GetCategory(int id)
@@ -52,6 +59,7 @@ namespace news_forum.Data.Repository
         {
             _context.SaveChanges();
         }
+
         #endregion
     }
 }

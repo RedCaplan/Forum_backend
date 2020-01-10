@@ -1,24 +1,24 @@
 ﻿using System;
 using System.Linq;
+using Forum.DTO;
+using Forum.Model;
+using Forum.Model.EFClasses;
+using Forum.Model.Enums;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
-using news_forum.DTO;
-using news_forum.Model;
-using news_forum.Model.EFClasses;
-using news_forum.Model.Enums;
 
-namespace news_forum.Data
+namespace Forum.Data
 {
     public class DataInitializer
     {
-        private ApplicationDbContext _context { get; set; }
-        private readonly UserManager<UserAccount> _um;
+        private readonly ApplicationDbContext _context;
+        private readonly UserManager<UserAccount> _userManager;
         private UserAccount _testUserAccount;
 
         public DataInitializer(ApplicationDbContext context, UserManager<UserAccount> um, IConfiguration config)
         {
             _context = context;
-            _um = um;
+            _userManager = um;
         }
 
         public void Seed()
@@ -31,7 +31,6 @@ namespace news_forum.Data
             AddPosts();
             AddGroupCategory();
             AddUserGroup();
-
         }
 
         private void AddUsers()
@@ -44,7 +43,7 @@ namespace news_forum.Data
                 Username = "test"
             };
 
-            _um.CreateAsync(new UserAccount()
+            _userManager.CreateAsync(new UserAccount()
             {
                 UserName = dto.Username,
                 Email = dto.Email,
@@ -56,7 +55,7 @@ namespace news_forum.Data
 
             _context.SaveChanges();
 
-            _testUserAccount = _um.FindByEmailAsync("test@gmail.com").Result;
+            _testUserAccount = _userManager.FindByEmailAsync("test@gmail.com").Result;
         }
 
         private void AddCategories()
@@ -122,11 +121,10 @@ namespace news_forum.Data
         private void AddUserGroup()
         {
             var group = _context.Groups.FirstOrDefault();
-            var user_group = new UserGroup(_testUserAccount, group);
+            var userGroup = new UserGroup(_testUserAccount, group);
 
-            group.UserGroups.Add(user_group);
+            group.UserGroups.Add(userGroup);
             _context.SaveChanges();
         }
-
     }
 }

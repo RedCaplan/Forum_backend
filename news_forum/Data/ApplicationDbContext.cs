@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Forum.Data.Mapping;
+using Forum.Model;
+using Forum.Model.EFClasses;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using news_forum.Data.Mapping;
-using news_forum.Model;
-using news_forum.Model.EFClasses;
 
-namespace news_forum.Data
+namespace Forum.Data
 {
     public class ApplicationDbContext : IdentityDbContext<UserAccount>
     {

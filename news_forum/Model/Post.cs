@@ -1,9 +1,9 @@
-﻿using news_forum.Model.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Forum.Model.Enums;
 
-namespace news_forum.Model
+namespace Forum.Model
 {
     public class Post
     {
@@ -15,18 +15,22 @@ namespace news_forum.Model
         public string Content { get; set; }
 
         public DateTime Created { get; set; }
+
         #endregion
 
         #region Associations
+
         public UserAccount UserAccount { get; set; }
-        public Thread Thread { get; set; }
+        public Thread Thread { get; set; }  
         public int? ReplyPostID { get; set; }
         public Post ReplyPost { get; set; }
         public ICollection<Post> ReplyPosts { get; set; }
         public Status Status { get; set; }
+
         #endregion
 
         #region Constructor
+
         //EF Constructor
         protected Post() { }
 
@@ -37,6 +41,7 @@ namespace news_forum.Model
             Thread = thread;
             ReplyPostID = replyPostId;
         }
+
         #endregion
     }
 }

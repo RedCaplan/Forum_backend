@@ -1,24 +1,28 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Forum.Model;
+using Forum.Model.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using news_forum.Model;
-using news_forum.Model.Interfaces;
 
-namespace news_forum.Data.Repository
+namespace Forum.Data.Repository
 {
     public class GroupRepository : IGroupRepository
     {
-        #region Attributes
+        #region Fields
+
         private readonly DbSet<Group> _groups;
         private readonly ApplicationDbContext _context;
+
         #endregion
 
         #region Constructor
+
         public GroupRepository(ApplicationDbContext context)
         {
             _groups = context.Groups;
             _context = context;
         }
+
         #endregion
 
         #region Interface Methods
@@ -47,6 +51,7 @@ namespace news_forum.Data.Repository
         {
             _context.SaveChanges();
         }
+
         #endregion
     }
 }

@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using news_forum.Model;
-using news_forum.Model.Enums;
+using Forum.Model;
+using Forum.Model.Enums;
 
-namespace news_forum.DTO
+namespace Forum.DTO
 {
     public class CategoryDTO
     {
         #region Properties
+
         [Required]
         public int ID { get; set; }
 
@@ -33,6 +34,7 @@ namespace news_forum.DTO
 
         [Required]
         public int? ParentCategoryID { get; set; }
+
         #endregion
 
         #region Constructor

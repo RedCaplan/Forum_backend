@@ -1,10 +1,11 @@
 ﻿using System.Text;
 
-namespace news_forum.Extensions
+namespace Forum.Extensions
 {
     public static class StringExtensions
     {
         #region CyrillicTranslitiration
+
         static readonly string[] CyrillicToLatinL =
             "a,b,v,g,d,e,zh,z,i,j,k,l,m,n,o,p,r,s,t,u,f,kh,c,ch,sh,sch,j,y,j,e,yu,ya".Split(',');
         static readonly string[] CyrillicToLatinU =
@@ -22,8 +23,10 @@ namespace news_forum.Extensions
                 else if (c == '\x20') sb.Append('-');
                 else sb.Append(c);
             }
+
             return sb.ToString().ToLower();
         }
+
         #endregion
     }
 }

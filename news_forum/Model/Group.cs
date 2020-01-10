@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using news_forum.Model.EFClasses;
+using Forum.Model.EFClasses;
 
-namespace news_forum.Model
+namespace Forum.Model
 {
     public class Group
     {
@@ -16,11 +16,14 @@ namespace news_forum.Model
         #endregion
 
         #region Associations
+
         public ICollection<GroupCategory> GroupCategories { get; set; }
         public ICollection<UserGroup> UserGroups { get; set; }
+
         #endregion
 
         #region Constructor
+
         //EF Constructor
         protected Group() { }
 
@@ -30,6 +33,7 @@ namespace news_forum.Model
             GroupCategories = new List<GroupCategory>();
             UserGroups = new List<UserGroup>();
         }
+
         #endregion
     }
 }

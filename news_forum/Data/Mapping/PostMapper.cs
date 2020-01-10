@@ -1,8 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Forum.Model;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using news_forum.Model;
 
-namespace news_forum.Data.Mapping
+namespace Forum.Data.Mapping
 {
     public class PostMapper : IEntityTypeConfiguration<Post>
     {

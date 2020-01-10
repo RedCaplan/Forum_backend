@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using news_forum.Model.EFClasses;
-using news_forum.Model.Enums;
+using Forum.Model.EFClasses;
+using Forum.Model.Enums;
+using Microsoft.AspNetCore.Identity;
 
-namespace news_forum.Model
+namespace Forum.Model
 {
     public class UserAccount : IdentityUser
     {
@@ -24,15 +24,18 @@ namespace news_forum.Model
         public ICollection<Post> Posts { get; set; }
         public ICollection<Thread> Threads { get; set; }
         public ICollection<UserGroup> UserGroups { get; set; }
+
         #endregion
 
-        //#region Constructor
+        #region Constructor
+
         public UserAccount() : base()
         {
             UserGroups = new List<UserGroup>();
             Threads = new List<Thread>();
             Posts = new List<Post>();
         }
-        //#endregion
+
+        #endregion
     }
 }

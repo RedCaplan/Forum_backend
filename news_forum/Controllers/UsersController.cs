@@ -3,15 +3,15 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Forum.DTO;
+using Forum.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using news_forum.DTO;
-using news_forum.Model;
 
-namespace news_forum.Controllers
+namespace Forum.Controllers
 {
     /// <summary>
     /// Api to register and login user
@@ -21,19 +21,22 @@ namespace news_forum.Controllers
     public class UsersController : ControllerBase
     {
         #region Fields
-        public UserManager<UserAccount> UM { get; set; }
+
+        private readonly UserManager<UserAccount> _userManager;
         private readonly SignInManager<UserAccount> _sim;
         private readonly IConfiguration _config;
+
         #endregion
 
         #region Constructor
-        public UsersController(UserManager<UserAccount> um
-            , IConfiguration configuration, SignInManager<UserAccount> sim)
+
+        public UsersController(UserManager<UserAccount> um, IConfiguration configuration, SignInManager<UserAccount> sim)
         {
-            UM = um;
+            _userManager = um;
             _config = configuration;
             _sim = sim;
         }
+
         #endregion
 
         #region Api methods
@@ -47,7 +50,7 @@ namespace news_forum.Controllers
         [HttpPost("Login")]
         public async Task<ActionResult<string>> Login(LoginDTO loginDTO)
         {
-            var user = await UM.FindByEmailAsync(loginDTO.Email);
+            var user = await _userManager.FindByEmailAsync(loginDTO.Email);
 
             if (user != null)
             {
@@ -60,17 +63,24 @@ namespace news_forum.Controllers
                     if (res.Succeeded)
                     {
                         string token = GetToken(user);
+
                         return Created("", token);
                     }
                     else
+                    {
                         ModelState.AddModelError("Error", "The password is incorrect");
+                    }
                 }
                 else
+                {
                     ModelState.AddModelError("Error", "This user can't sign in");
+                }
 
             }
             else
+            {
                 ModelState.AddModelError("Error", "We couldn't find the user with that e-mail");
+            }
 
             return BadRequest(ModelState);
         }
@@ -84,16 +94,19 @@ namespace news_forum.Controllers
         [HttpPost("Register")]
         public async Task<ActionResult<string>> Register(RegisterDTO registerDTO)
         {
-            if (UM.FindByEmailAsync(registerDTO.Email).Result != null)
+            if (await _userManager.FindByEmailAsync(registerDTO.Email) != null)
+            {
                 ModelState.AddModelError("Error", "Email is not unique");
+            }
             else
             {
-                UserAccount ua = new UserAccount() { UserName = registerDTO.Username, Email = registerDTO.Email };
-                var res = await UM.CreateAsync(ua, registerDTO.Password);
+                UserAccount userAccount = new UserAccount() { UserName = registerDTO.Username, Email = registerDTO.Email };
+                var res = await _userManager.CreateAsync(userAccount, registerDTO.Password);
 
                 if (res.Succeeded)
                 {
-                    string token = GetToken(ua);
+                    string token = GetToken(userAccount);
+
                     return Created("", token);
                 }
                 else
@@ -115,19 +128,22 @@ namespace news_forum.Controllers
         [HttpGet("EmailUnique")]
         public async Task<ActionResult<bool>> CheckIfEmailUnique(string mail)
         {
-            return await UM.FindByEmailAsync(mail) == null;
+            return await _userManager.FindByEmailAsync(mail) == null;
         }
 
         #endregion
 
         #region Private methods
-        private UserAccount GetUser()
+
+        private async Task<UserAccount> GetUser()
         {
-            return UM.FindByNameAsync(User.Identity.Name).Result;
+            return await _userManager.FindByNameAsync(User.Identity.Name);
         }
+
         #endregion
 
         #region Method to generate the cookie
+
         private String GetToken(UserAccount user)
         {
             // Create the token
@@ -147,8 +163,10 @@ namespace news_forum.Controllers
                 expires: DateTime.Now.AddHours(4),
                 signingCredentials: creds);
             JwtSecurityTokenHandler.DefaultMapInboundClaims = true;
+
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
+
         #endregion
     }
 }

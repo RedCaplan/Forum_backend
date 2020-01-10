@@ -1,9 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace news_forum.DTO
+namespace Forum.DTO
 {
     public class LoginDTO
     {
+        #region Properties
+
         [Required(ErrorMessage = "Emailadress is required.")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
@@ -12,5 +14,7 @@ namespace news_forum.DTO
         [DataType(DataType.Password)]
         [MinLength(10, ErrorMessage = "Password needs to be at least 10 characters")]
         public string Password { get; set; }
+
+        #endregion
     }
 }

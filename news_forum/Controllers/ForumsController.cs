@@ -3,19 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Forum.DTO;
+using Forum.Model;
+using Forum.Model.Enums;
+using Forum.Model.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using news_forum.DTO;
-using news_forum.Model;
-using news_forum.Model.Enums;
-using news_forum.Model.Interfaces;
 
-namespace news_forum.Controllers
+namespace Forum.Controllers
 {
-
     [Route("api/[controller]")]
     [ApiController]
     public class ForumsController : ControllerBase
@@ -27,10 +26,10 @@ namespace news_forum.Controllers
         private readonly ICategoryRepository _categoryRepo;
         private readonly IGroupRepository _groupRepo;
 
-
         #endregion
 
         #region Constructor
+
         public ForumsController(UserManager<UserAccount> um, IThreadRepository threadRepo, ICategoryRepository categoryRepo, IGroupRepository groupRepo)
         {
             _userManager = um;
@@ -38,6 +37,7 @@ namespace news_forum.Controllers
             _categoryRepo = categoryRepo;
             _groupRepo = groupRepo;
         }
+
         #endregion
 
         #region Api methods
@@ -46,6 +46,7 @@ namespace news_forum.Controllers
         public ActionResult<List<CategoryDTO>> GetAllCategories()
         {
             ICollection<Category> categories = _categoryRepo.GetAllCategories();
+
             return categories.Select(c=> new CategoryDTO(c)).ToList();
         }
 
@@ -63,10 +64,10 @@ namespace news_forum.Controllers
             catch (Exception e)
             {
                 ModelState.AddModelError("Error", e.Message);
+
                 return BadRequest(ModelState);
             }
         }
-
 
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPost]
@@ -76,12 +77,16 @@ namespace news_forum.Controllers
             {
                 var email = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 var user = await _userManager.FindByEmailAsync(email);
+
                 if (!user.IsModerator)
+                {
                     throw new Exception("You aren't the moderator of this category");
-
-                if (model == null) return BadRequest("No entity provided");
+                }
+                if (model == null)
+                {
+                    return BadRequest("No entity provided");
+                }
                 
-
                 Category category = new Category(model.Name, model.Description, model.ParentCategoryID, Status.WAITING_FOR_APPROVAL);
                 _categoryRepo.AddCategory(category);
                 _categoryRepo.SaveChanges();
@@ -106,8 +111,11 @@ namespace news_forum.Controllers
                 var email = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 var user = _userManager.FindByEmailAsync(email).Result;
                 var qwe = user.UserGroups.ToList();
+
                 if (!user.IsModerator)
+                {
                     throw new Exception("You aren't the moderator of this category");
+                }
 
                 _categoryRepo.RemoveCategory(category);
                 _categoryRepo.SaveChanges();

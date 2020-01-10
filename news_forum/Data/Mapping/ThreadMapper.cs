@@ -1,15 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Forum.Model;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using news_forum.Model;
-using NJsonSchema.Infrastructure;
 
-namespace news_forum.Data.Mapping
+namespace Forum.Data.Mapping
 {
     public class ThreadMapper : IEntityTypeConfiguration<Thread>
     {
         public void Configure(EntityTypeBuilder<Thread> builder)
         {
             #region Mapping
+
             builder.ToTable("Thread");
 
             //ID Configuration

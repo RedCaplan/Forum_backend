@@ -1,43 +1,48 @@
-﻿using news_forum.Model.Enums;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using news_forum.Extensions;
+using Forum.Extensions;
+using Forum.Model.Enums;
 
-namespace news_forum.Model
+namespace Forum.Model
 {
     public class Category
     {
         #region Properties
-            public int ID { get; set; }
 
-            [Required]
-            [StringLength(100)]
-            public string Name { get; set; }
+        public int ID { get; set; }
 
-            [StringLength(1000)]
-            public string Description { get; set; }
+        [Required]
+        [StringLength(100)]
+        public string Name { get; set; }
 
-            public DateTime Created { get; set; }
-            public string LatinName { get; set; }
+        [StringLength(1000)]
+        public string Description { get; set; }
+
+        public DateTime Created { get; set; }
+
+        public string LatinName { get; set; }
 
         #endregion
 
         #region Associations
+
         public Status Status { get; set; }
-           public int? ParentCategoryID { get; set; }
-           public Category ParentCategory { get; set; }
-           public ICollection<Category> SubCategories { get; set; }
+        public int? ParentCategoryID { get; set; }
+        public Category ParentCategory { get; set; }
+        public ICollection<Category> SubCategories { get; set; }
+
         #endregion
 
         #region Constructor
+
         //EF Constructor
         protected Category()
         {
             SubCategories = new HashSet<Category>();
         }
 
-        public Category(string name, string description, int? parentCategoryID = null, Status status = Status.APPROVED): this()
+        public Category(string name, string description, int? parentCategoryID = null, Status status = Status.APPROVED) : this()
         {
             Name = name;
             Description = description;
@@ -46,10 +51,10 @@ namespace news_forum.Model
             ParentCategoryID = parentCategoryID;
             Created = DateTime.Now;
         }
+
         #endregion
 
 
 
     }
 }
-    

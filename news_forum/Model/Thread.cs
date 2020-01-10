@@ -1,13 +1,14 @@
-﻿using news_forum.Model.Enums;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
-using news_forum.Extensions;
+using Forum.Extensions;
+using Forum.Model.Enums;
 
-namespace news_forum.Model
+namespace Forum.Model
 {
     public class Thread
     {
         #region Properties
+
         public int ID { get; set; }
 
         [Required]
@@ -21,6 +22,7 @@ namespace news_forum.Model
         public DateTime Created { get; set; }
 
         public string LatinName { get; set; }
+
         #endregion
 
         #region Associations
@@ -28,9 +30,11 @@ namespace news_forum.Model
         public UserAccount UserAccount { get; set; }
         public Category Category { get; set; }
         public Status Status { get; set; }
+
         #endregion
 
         #region Constructor
+
         //EF Constructor
         protected Thread() { }
 
@@ -43,6 +47,7 @@ namespace news_forum.Model
             LatinName = subject.CyrilicToLatin();
             Created = DateTime.Now;
         }
+
         #endregion
     }
 }
