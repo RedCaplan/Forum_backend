@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Ardalis.GuardClauses;
 using Forum.Core.Common;
 using Forum.Core.Model;
 using Forum.Data.Repository.Interfaces;
@@ -17,7 +18,7 @@ namespace Forum.Services.BusinessServices
         private readonly ICategoryRepository _categoryRepository;
         private readonly IThreadRepository _threadRepository;
 
-        public CategoryService(ICategoryRepository categoryRepo, IThreadRepository threadRepo, UserManager<UserAccount> um)
+        public CategoryService(ICategoryRepository categoryRepo, IThreadRepository threadRepo)
         {
             _categoryRepository = categoryRepo;
             _threadRepository = threadRepo;
@@ -35,16 +36,23 @@ namespace Forum.Services.BusinessServices
 
         public Category GetCategoryByName(string name)
         {
+            Guard.Against.NullOrEmpty(name,nameof(name));
+
             return _categoryRepository.GetCategoryByName(name);
         }
 
         public IEnumerable<Thread> GetAllThreadsByCategoryName(string name, PaginationRequest request)
         {
+            Guard.Against.NullOrEmpty(name, nameof(name));
+            Guard.Against.Null(request, nameof(request));
+
             return _threadRepository.GetThreadsByCategory(GetCategoryByName(name), request);
         }
 
         public void AddCategory(Category category)
         {
+            Guard.Against.Null(category, nameof(category));
+
             _categoryRepository.Insert(category, true);
         }
 
@@ -55,6 +63,8 @@ namespace Forum.Services.BusinessServices
 
         public void DeleteCategory(string categoryName)
         {
+            Guard.Against.NullOrEmpty(categoryName, nameof(categoryName));
+
             Category category = _categoryRepository.GetCategoryByName(categoryName);
             _categoryRepository.Delete(category);
         }

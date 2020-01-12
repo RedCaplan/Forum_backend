@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Ardalis.GuardClauses" Version="1.3.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Forum.Core\Forum.Core.csproj" />
     <ProjectReference Include="..\Forum.Data\Forum.Data.csproj" />
   </ItemGroup>

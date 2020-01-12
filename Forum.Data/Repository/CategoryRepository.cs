@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Forum.Core.Model;
 using Forum.Data.Repository.Interfaces;
@@ -34,7 +35,7 @@ namespace Forum.Data.Repository
 
         public Category GetCategoryByName(string name)
         {
-            return _categories.FirstOrDefault(c => c.LatinName == name.ToLower());
+            return _categories.FirstOrDefault(c => String.Equals(c.Name, name, StringComparison.CurrentCultureIgnoreCase));
         }
 
         #endregion

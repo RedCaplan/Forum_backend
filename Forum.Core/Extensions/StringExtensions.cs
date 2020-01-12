@@ -24,7 +24,7 @@ namespace Forum.Core.Extensions
                 else sb.Append(c);
             }
 
-            return sb.ToString().ToLower();
+            return sb.ToString();
         }
 
         #endregion
