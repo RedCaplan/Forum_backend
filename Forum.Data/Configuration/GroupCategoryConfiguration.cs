@@ -16,13 +16,13 @@ namespace Forum.Data.Configuration
             builder.HasOne(gc => gc.Group)
                 .WithMany(g => g.GroupCategories)
                 .HasForeignKey(gc => gc.GroupID)
-                .HasPrincipalKey(g => g.ID)
+                .HasPrincipalKey(g => g.Id)
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(gc => gc.Category)
                 .WithMany()
                 .HasForeignKey(gc => gc.CategoryID)
-                .HasPrincipalKey(c => c.ID)
+                .HasPrincipalKey(c => c.Id)
                 .OnDelete(DeleteBehavior.Cascade);
 
             #endregion

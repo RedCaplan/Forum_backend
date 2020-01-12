@@ -1,10 +1,8 @@
 ﻿namespace Forum.Core.Model
 {
-    public class Votes
+    public class Votes : BaseEntity
     {
         #region Properties
-
-        public int ID { get; set; }
 
         public int Value { get; set; }
 

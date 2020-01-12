@@ -3,7 +3,7 @@ using Forum.Core.Model;
 
 namespace Forum.Data.Repository.Interfaces
 {
-    public interface IVotesRepository
+    public interface IVotesRepository : IGenericRepository<Votes>
     {
         #region Interface Methods     
 
@@ -12,12 +12,6 @@ namespace Forum.Data.Repository.Interfaces
         IEnumerable<Votes> GetVotesByThread(int threadId);
 
         bool VotesExists(UserAccount userAccount, int? postId, int? threadId);
-
-        void AddVotes(Votes votes);
-
-        void UpdateVotes(Votes votes);
-
-        void SaveChanges();
 
         #endregion
     }

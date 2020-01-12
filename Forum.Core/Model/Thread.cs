@@ -5,11 +5,9 @@ using Forum.Core.Model.Enums;
 
 namespace Forum.Core.Model
 {
-    public class Thread
+    public class Thread : BaseEntity
     {
         #region Properties
-
-        public int ID { get; set; }
 
         [Required]
         [StringLength(200)]

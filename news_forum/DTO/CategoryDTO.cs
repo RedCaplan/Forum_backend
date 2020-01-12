@@ -41,7 +41,7 @@ namespace Forum.Web.DTO
 
         public CategoryDTO(Category category)
         {
-            ID = category.ID;
+            ID = category.Id;
             Name = category.Name;
             LatinName = category.LatinName;
             Description = category.Description;

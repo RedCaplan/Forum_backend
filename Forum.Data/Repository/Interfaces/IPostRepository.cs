@@ -3,7 +3,7 @@ using Forum.Core.Model;
 
 namespace Forum.Data.Repository.Interfaces
 {
-    public interface IPostRepository
+    public interface IPostRepository : IGenericRepository<Post>
     {
         #region Interface Methods
 
@@ -11,13 +11,7 @@ namespace Forum.Data.Repository.Interfaces
 
         IEnumerable<Post> GetPostsByThread(Thread thread);
 
-        void RemovePost(Post post);
-
-        void UpdatePost(Post post);
-
-        void AddPost(Post post);
-
-        void SaveChanges();
+        void SoftDeletePost(Post post);
 
         #endregion
     }

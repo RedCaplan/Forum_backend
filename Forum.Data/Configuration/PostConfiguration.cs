@@ -13,8 +13,8 @@ namespace Forum.Data.Configuration
             builder.ToTable("Post");
 
             //ID Configuration
-            builder.HasKey(p => p.ID);
-            builder.Property(p => p.ID).IsRequired().ValueGeneratedOnAdd();
+            builder.HasKey(p => p.Id);
+            builder.Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
 
             builder.Property(p => p.Content).IsRequired().HasMaxLength(2000);
 

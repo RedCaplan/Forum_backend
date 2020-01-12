@@ -22,7 +22,7 @@ namespace Forum.Data.Configuration
             builder.HasOne(ug => ug.Group)
                 .WithMany(g=>g.UserGroups)
                 .HasForeignKey(ug => ug.GroupID)
-                .HasPrincipalKey(g => g.ID)
+                .HasPrincipalKey(g => g.Id)
                 .OnDelete(DeleteBehavior.Cascade);
 
             #endregion

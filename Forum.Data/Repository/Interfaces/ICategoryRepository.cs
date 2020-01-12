@@ -3,21 +3,13 @@ using Forum.Core.Model;
 
 namespace Forum.Data.Repository.Interfaces
 {
-    public interface ICategoryRepository
+    public interface ICategoryRepository : IGenericRepository<Category>
     {
         #region Interface Methods
 
-        ICollection<Category> GetAllCategories();
+        ICollection<Category> GetAllWithSubCategories();
 
-        Category GetCategory(int id);
-
-        Category GetCategoryByNameId(string name, int id);
-
-        void RemoveCategory(Category category);
-
-        void AddCategory(Category category);
-
-        void SaveChanges();
+        Category GetCategoryByName(string name);
 
         #endregion
     }

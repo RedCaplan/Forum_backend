@@ -13,8 +13,8 @@ namespace Forum.Data.Configuration
             builder.ToTable("Votes");
 
             //ID Configuration
-            builder.HasKey(v => v.ID);
-            builder.Property(v => v.ID).IsRequired().ValueGeneratedOnAdd();
+            builder.HasKey(v => v.Id);
+            builder.Property(v => v.Id).IsRequired().ValueGeneratedOnAdd();
 
             #endregion
         }

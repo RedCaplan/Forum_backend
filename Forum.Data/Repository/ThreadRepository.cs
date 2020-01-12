@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Forum.Core.Common;
 using Forum.Core.Model;
 using Forum.Core.Model.Enums;
 using Forum.Data.Repository.Interfaces;
@@ -7,28 +8,26 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Forum.Data.Repository
 {
-    public class ThreadRepository : IThreadRepository
+    public class ThreadRepository : GenericRepository<Thread>, IThreadRepository
     {
         #region Fields
 
         private readonly DbSet<Thread> _threads;
-        private readonly ApplicationDbContext _context;
 
         #endregion
 
         #region Constructor
 
-        public ThreadRepository(ApplicationDbContext context)
+        public ThreadRepository(ApplicationDbContext context) : base(context)
         {
             _threads = context.Threads;
-            _context = context;
         }
 
         #endregion
 
         #region Interface Methods
 
-        public IEnumerable<Thread> GetAllThreads()
+        public IEnumerable<Thread> GetAllWithIncludes()
         {
             return _threads
                 .Include(t=> t.UserAccount)
@@ -47,34 +46,16 @@ namespace Forum.Data.Repository
             return _threads.Where(t => t.Category == category).ToList();
         }
 
+        public IEnumerable<Thread> GetThreadsByCategory(Category category, PaginationRequest request)
+        {
+            return GetThreadsByCategory(category)
+                .Skip(request.PageIndex * request.PageSize)
+                .Take(request.PageSize);
+        }
+
         public IEnumerable<Thread> GetThreadsByStatus(Status status)
         {
             return _threads.Where(t => t.Status == status).ToList();
-        }
-
-        public Thread GetThread(int id)
-        {
-            return _threads.FirstOrDefault(t => t.ID == id);
-        }
-
-        public void RemoveThread(Thread thread)
-        {
-            _threads.Remove(thread);
-        }
-
-        public void AddThread(Thread thread)
-        {
-            _threads.Add(thread);
-        }
-
-        public void UpdateThread(Thread thread)
-        {
-            _threads.Update(thread);
-        }
-
-        public void SaveChanges()
-        {
-            _context.SaveChanges();
         }
 
         #endregion

@@ -4,10 +4,9 @@ using Forum.Core.Model.EFClasses;
 
 namespace Forum.Core.Model
 {
-    public class Group
+    public class Group : BaseEntity
     {
         #region Properties
-        public int ID { get; set; }
 
         [Required]
         [StringLength(100)]

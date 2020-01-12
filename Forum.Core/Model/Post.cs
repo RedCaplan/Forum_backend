@@ -5,10 +5,9 @@ using Forum.Core.Model.Enums;
 
 namespace Forum.Core.Model
 {
-    public class Post
+    public class Post : BaseEntity
     {
         #region Properties
-        public int ID { get; set; }
 
         [Required]
         [StringLength(2000)]

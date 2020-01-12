@@ -58,8 +58,8 @@ namespace Forum.Data
 
             var categories = new Category[]
             {
-                new Category("General Discuss", "General discussion about the ...", parentCategory.ID),
-                new Category("Feedback", "Tell us how to improve Forum!",parentCategory.ID)
+                new Category("General Discuss", "General discussion about the ...", parentCategory.Id),
+                new Category("Feedback", "Tell us how to improve Forum!",parentCategory.Id)
             };
 
             _context.Categories.AddRange(categories);

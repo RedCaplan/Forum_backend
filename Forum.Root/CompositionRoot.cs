@@ -28,10 +28,10 @@ namespace Forum.Root
 
             //scope the repositories
             services.AddScoped<ICategoryRepository, CategoryRepository>()
-                .AddScoped<IGroupRepository, GroupRepository>()
                 .AddScoped<IPostRepository, PostRepository>()
                 .AddScoped<IThreadRepository, ThreadRepository>()
-                .AddScoped<IVotesRepository, VotesRepository>();
+                .AddScoped<IVotesRepository, VotesRepository>()
+                .AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
             //add identity options
             services.AddDefaultIdentity<UserAccount>(options =>

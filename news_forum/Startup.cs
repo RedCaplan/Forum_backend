@@ -1,6 +1,8 @@
 ﻿using System.Text;
 using Forum.Core.Interfaces;
 using Forum.Root;
+using Forum.Services.BusinessServices;
+using Forum.Services.BusinessServices.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,6 +29,8 @@ namespace Forum.Web
         public void ConfigureServices(IServiceCollection services)
         {
             CompositionRoot.InjectDependencies(services,Configuration);
+
+            services.AddScoped<ICategoryService, CategoryService>();
 
             //add api documentation
             services.AddOpenApiDocument(d => {
