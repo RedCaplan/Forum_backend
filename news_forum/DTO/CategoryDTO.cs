@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using Forum.Model;
-using Forum.Model.Enums;
+using Forum.Core.Model;
+using Forum.Core.Model.Enums;
 
-namespace Forum.DTO
+namespace Forum.Web.DTO
 {
     public class CategoryDTO
     {

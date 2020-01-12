@@ -3,15 +3,15 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using Forum.DTO;
-using Forum.Model;
+using Forum.Core.Model;
+using Forum.Web.DTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Forum.Controllers
+namespace Forum.Web.Controllers
 {
     /// <summary>
     /// Api to register and login user

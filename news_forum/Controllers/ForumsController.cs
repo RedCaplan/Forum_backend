@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Forum.DTO;
-using Forum.Model;
-using Forum.Model.Enums;
-using Forum.Model.Interfaces;
+using Forum.Core.Model;
+using Forum.Core.Model.Enums;
+using Forum.Data.Repository.Interfaces;
+using Forum.Web.DTO;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Forum.Controllers
+namespace Forum.Web.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
