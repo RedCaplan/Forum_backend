@@ -30,20 +30,20 @@ namespace Forum.Data.Repository
         public IEnumerable<Thread> GetAllWithIncludes()
         {
             return _threads
-                .Include(t=> t.UserAccount)
-                .Include(t=>t.Category)
-                .Include(t=>t.Status)
-                .ToList();
+                .Include(t => t.UserAccount)
+                .Include(t => t.Category);
         }
 
         public IEnumerable<Thread> GetThreadsByUser(UserAccount userAccount)
         {
-            return _threads.Where(t => t.UserAccount.Id == userAccount.Id).ToList();
+            return _threads.Where(t => t.UserAccount.Id == userAccount.Id);
         }
 
         public IEnumerable<Thread> GetThreadsByCategory(Category category)
         {
-            return _threads.Where(t => t.Category == category).ToList();
+            return _threads.Where(t => t.Category == category)
+                .Include(t => t.UserAccount)
+                .Include(t => t.Category);
         }
 
         public IEnumerable<Thread> GetThreadsByCategory(Category category, PaginationRequest request)
@@ -55,7 +55,7 @@ namespace Forum.Data.Repository
 
         public IEnumerable<Thread> GetThreadsByStatus(Status status)
         {
-            return _threads.Where(t => t.Status == status).ToList();
+            return _threads.Where(t => t.Status == status);
         }
 
         #endregion

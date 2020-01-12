@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using AutoMapper;
 using Forum.Core.Interfaces;
 using Forum.Root;
 using Forum.Services.BusinessServices;
@@ -31,6 +32,8 @@ namespace Forum.Web
             CompositionRoot.InjectDependencies(services,Configuration);
 
             services.AddScoped<ICategoryService, CategoryService>();
+            services.AddAutoMapper(typeof(Startup));
+
 
             //add api documentation
             services.AddOpenApiDocument(d => {

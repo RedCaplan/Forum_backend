@@ -25,12 +25,11 @@ namespace Forum.Data.Repository
 
         #region Interface Methods
 
-        public ICollection<Category> GetAllWithSubCategories()
+        public IEnumerable<Category> GetAllWithSubCategories()
         {
             return _categories
-                .Include(c=>c.SubCategories)
-                .Where(c=>c.ParentCategory==null)
-                .ToList();
+                .Include(c => c.SubCategories)
+                .Where(c => c.ParentCategory == null);
         }
 
         public Category GetCategoryByName(string name)

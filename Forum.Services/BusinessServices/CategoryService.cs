@@ -16,16 +16,14 @@ namespace Forum.Services.BusinessServices
     {
         private readonly ICategoryRepository _categoryRepository;
         private readonly IThreadRepository _threadRepository;
-        private readonly UserManager<UserAccount> _userManager;
 
         public CategoryService(ICategoryRepository categoryRepo, IThreadRepository threadRepo, UserManager<UserAccount> um)
         {
             _categoryRepository = categoryRepo;
             _threadRepository = threadRepo;
-            _userManager = um;
         }
 
-        public ICollection<Category> GetCategories()
+        public IEnumerable<Category> GetCategories()
         {
             return _categoryRepository.GetAllWithSubCategories();
         }
@@ -55,9 +53,10 @@ namespace Forum.Services.BusinessServices
             _categoryRepository.Delete(id,true);
         }
 
-        public void DeleteCategory(string categoryName, int id)
+        public void DeleteCategory(string categoryName)
         {
-            throw new NotImplementedException();
+            Category category = _categoryRepository.GetCategoryByName(categoryName);
+            _categoryRepository.Delete(category);
         }
     }
 }

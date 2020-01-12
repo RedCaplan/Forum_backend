@@ -8,17 +8,17 @@ namespace Forum.Data
 {
     public class ApplicationDbContext : IdentityDbContext<UserAccount>
     {
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+            : base(options)
+        {
+        }
+
         public DbSet<Category> Categories { get; set; }
         public DbSet<Group> Groups { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<Thread> Threads { get; set; }
         public DbSet<UserAccount> UserAccounts { get; set; }
         public DbSet<Votes> Votes { get; set; }
-
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
-        {
-        }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

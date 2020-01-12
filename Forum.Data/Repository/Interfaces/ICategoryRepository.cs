@@ -7,7 +7,7 @@ namespace Forum.Data.Repository.Interfaces
     {
         #region Interface Methods
 
-        ICollection<Category> GetAllWithSubCategories();
+        IEnumerable<Category> GetAllWithSubCategories();
 
         Category GetCategoryByName(string name);
 

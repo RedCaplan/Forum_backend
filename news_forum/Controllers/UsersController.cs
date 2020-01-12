@@ -3,6 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using Forum.Core.Model;
 using Forum.Web.DTO;
 using Microsoft.AspNetCore.Authorization;
@@ -25,16 +26,18 @@ namespace Forum.Web.Controllers
         private readonly UserManager<UserAccount> _userManager;
         private readonly SignInManager<UserAccount> _sim;
         private readonly IConfiguration _config;
+        private readonly IMapper _mapper;
 
         #endregion
 
         #region Constructor
 
-        public UsersController(UserManager<UserAccount> um, IConfiguration configuration, SignInManager<UserAccount> sim)
+        public UsersController(UserManager<UserAccount> um, IConfiguration configuration, SignInManager<UserAccount> sim, IMapper mapper)
         {
             _userManager = um;
             _config = configuration;
             _sim = sim;
+            _mapper = mapper;
         }
 
         #endregion
@@ -100,7 +103,8 @@ namespace Forum.Web.Controllers
             }
             else
             {
-                UserAccount userAccount = new UserAccount() { UserName = registerDTO.Username, Email = registerDTO.Email };
+
+                UserAccount userAccount = _mapper.Map<RegisterDTO, UserAccount>(registerDTO);
                 var res = await _userManager.CreateAsync(userAccount, registerDTO.Password);
 
                 if (res.Succeeded)
@@ -150,7 +154,8 @@ namespace Forum.Web.Controllers
             var claims = new[]
             {
                 new Claim(JwtRegisteredClaimNames.Sub, user.Email),
-                new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName)
+                new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName),
+                new Claim("IsModerator", user.IsModerator.ToString())
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Tokens:Key"]));
