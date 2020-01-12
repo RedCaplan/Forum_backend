@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using Forum.Core.Model;
-using Forum.Data;
 using Forum.Data.Repository;
 using Forum.Data.Repository.Interfaces;
 using Forum.UnitTests.Builders;
 using Xunit;
 
-namespace Forum.IntegrationTests.Data.Repositories.CategoryRepositoryTests
+namespace Forum.UnitTests.Data.Repositories.CategoryRepositoryTests
 {
     public class GetAllWithSubCategories : BaseEfRepoTestFixture
     {
@@ -40,8 +36,8 @@ namespace Forum.IntegrationTests.Data.Repositories.CategoryRepositoryTests
 
             _categoryRepository.Insert(subCategory, true);
 
-            Assert.Equal(_categoryRepository.GetAllWithSubCategories().First().SubCategories.Count, 1);
-            Assert.Equal(_categoryRepository.GetAllWithSubCategories().First().Name, categoryParent.Name);
+            Assert.Equal(1, _categoryRepository.GetAllWithSubCategories().First().SubCategories.Count);
+            Assert.Equal(categoryParent.Name, _categoryRepository.GetAllWithSubCategories().First().Name);
         }
     }
 }

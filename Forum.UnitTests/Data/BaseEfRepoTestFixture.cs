@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Forum.Data;
+﻿using Forum.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Forum.IntegrationTests.Data
+namespace Forum.UnitTests.Data
 {
     public abstract class BaseEfRepoTestFixture
     {

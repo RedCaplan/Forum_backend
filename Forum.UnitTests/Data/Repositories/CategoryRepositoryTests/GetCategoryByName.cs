@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Forum.Core.Model;
+﻿using Forum.Core.Model;
 using Forum.Data.Repository;
 using Forum.Data.Repository.Interfaces;
 using Forum.UnitTests.Builders;
 using Xunit;
 
-namespace Forum.IntegrationTests.Data.Repositories.CategoryRepositoryTests
+namespace Forum.UnitTests.Data.Repositories.CategoryRepositoryTests
 {
     public class GetCategoryByName : BaseEfRepoTestFixture
     {
