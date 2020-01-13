@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Forum.Core.Model;
+using Forum.Services.BusinessServices.Interfaces;
 using Forum.Web.DTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -23,20 +24,16 @@ namespace Forum.Web.Controllers
     {
         #region Fields
 
-        private readonly UserManager<UserAccount> _userManager;
-        private readonly SignInManager<UserAccount> _sim;
-        private readonly IConfiguration _config;
+        private readonly IUserService _userService;
         private readonly IMapper _mapper;
 
         #endregion
 
         #region Constructor
 
-        public UsersController(UserManager<UserAccount> um, IConfiguration configuration, SignInManager<UserAccount> sim, IMapper mapper)
+        public UsersController(IUserService userService, IMapper mapper)
         {
-            _userManager = um;
-            _config = configuration;
-            _sim = sim;
+            _userService = userService;
             _mapper = mapper;
         }
 
@@ -53,19 +50,19 @@ namespace Forum.Web.Controllers
         [HttpPost("Login")]
         public async Task<ActionResult<string>> Login(LoginDTO loginDTO)
         {
-            var user = await _userManager.FindByEmailAsync(loginDTO.Email);
+            UserAccount userAccount = await _userService.FindByEmailAsync(loginDTO.Email);
 
-            if (user != null)
+            if (userAccount != null)
             {
-                bool canSignIn = await _sim.CanSignInAsync(user);
+                bool canSignIn = await _userService.CanSignInAsync(userAccount);
 
                 if (canSignIn)
                 {
 
-                    var res = await _sim.CheckPasswordSignInAsync(user, loginDTO.Password, false);
+                    var res = await _userService.CheckPasswordSignInAsync(userAccount, loginDTO.Password);
                     if (res.Succeeded)
                     {
-                        string token = GetToken(user);
+                        string token = _userService.GetToken(userAccount);
 
                         return Created("", token);
                     }
@@ -97,7 +94,7 @@ namespace Forum.Web.Controllers
         [HttpPost("Register")]
         public async Task<ActionResult<string>> Register(RegisterDTO registerDTO)
         {
-            if (await _userManager.FindByEmailAsync(registerDTO.Email) != null)
+            if (await _userService.CheckIfEmailUnique(registerDTO.Email) == false)
             {
                 ModelState.AddModelError("Error", "Email is not unique");
             }
@@ -105,11 +102,11 @@ namespace Forum.Web.Controllers
             {
 
                 UserAccount userAccount = _mapper.Map<RegisterDTO, UserAccount>(registerDTO);
-                var res = await _userManager.CreateAsync(userAccount, registerDTO.Password);
+                var res = await _userService.CreateAsync(userAccount, registerDTO.Password);
 
                 if (res.Succeeded)
                 {
-                    string token = GetToken(userAccount);
+                    string token = _userService.GetToken(userAccount);
 
                     return Created("", token);
                 }
@@ -132,44 +129,7 @@ namespace Forum.Web.Controllers
         [HttpGet("EmailUnique")]
         public async Task<ActionResult<bool>> CheckIfEmailUnique(string mail)
         {
-            return await _userManager.FindByEmailAsync(mail) == null;
-        }
-
-        #endregion
-
-        #region Private methods
-
-        private async Task<UserAccount> GetUser()
-        {
-            return await _userManager.FindByNameAsync(User.Identity.Name);
-        }
-
-        #endregion
-
-        #region Method to generate the cookie
-
-        private String GetToken(UserAccount user)
-        {
-            // Create the token
-            var claims = new[]
-            {
-                new Claim(JwtRegisteredClaimNames.Sub, user.Email),
-                new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName),
-                new Claim("IsModerator", user.IsModerator.ToString())
-            };
-
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Tokens:Key"]));
-
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-            var token = new JwtSecurityToken(
-                null, null,
-                claims,
-                expires: DateTime.Now.AddHours(4),
-                signingCredentials: creds);
-            JwtSecurityTokenHandler.DefaultMapInboundClaims = true;
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            return await _userService.CheckIfEmailUnique(mail);
         }
 
         #endregion

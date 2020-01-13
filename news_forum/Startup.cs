@@ -32,6 +32,7 @@ namespace Forum.Web
             CompositionRoot.InjectDependencies(services,Configuration);
 
             services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IUserService, UserService>();
             services.AddAutoMapper(typeof(Startup));
 
 
