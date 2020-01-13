@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Forum.Core.Extensions;
+﻿using Forum.Core.Extensions;
 using Xunit;
 
 namespace Forum.UnitTests.Core.Extensions.StringExtensionsTests

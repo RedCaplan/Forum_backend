@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using Forum.Core.Model;
 using Forum.Data.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;

@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Linq;
-using System.Threading.Tasks;
 using Forum.Core.Interfaces;
 using Forum.Core.Model;
 using Forum.Core.Model.EFClasses;
 using Forum.Core.Model.Enums;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
 
 namespace Forum.Data
 {

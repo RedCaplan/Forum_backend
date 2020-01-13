@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using Forum.Core.Model;
 
 namespace Forum.Data.Repository.Interfaces

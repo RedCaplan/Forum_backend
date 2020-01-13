@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Forum.Core.Model;
+﻿using Forum.Core.Model;
 
 namespace Forum.UnitTests.Builders
 {

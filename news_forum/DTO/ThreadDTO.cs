@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Forum.Core.Model;
 using Forum.Core.Model.Enums;
 
 namespace Forum.Web.DTO

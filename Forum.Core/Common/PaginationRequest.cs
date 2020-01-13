@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Forum.Core.Common
+﻿namespace Forum.Core.Common
 {
     public class PaginationRequest
     {

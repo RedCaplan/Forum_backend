@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 using Forum.Core.Model;
-using Forum.Data.Repository;
 using Forum.Data.Repository.Interfaces;
 using Forum.Services.BusinessServices;
 using Forum.UnitTests.Builders;

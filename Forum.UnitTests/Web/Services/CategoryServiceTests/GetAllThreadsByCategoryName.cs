@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Forum.Core.Common;
 using Forum.Services.BusinessServices;
 using Xunit;

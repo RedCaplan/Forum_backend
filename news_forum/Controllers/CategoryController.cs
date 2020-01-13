@@ -1,21 +1,14 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
 using AutoMapper;
 using Forum.Core.Common;
 using Forum.Core.Model;
-using Forum.Core.Model.Enums;
 using Forum.Services.BusinessServices.Interfaces;
-using Forum.Web.Filters;
 using Forum.Web.DTO;
 using Forum.Web.Filters.Attributes;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Forum.Web.Controllers

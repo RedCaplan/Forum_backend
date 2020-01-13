@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Ardalis.GuardClauses;
 using Forum.Core.Common;
 using Forum.Core.Model;
 using Forum.Data.Repository.Interfaces;
 using Forum.Services.BusinessServices.Interfaces;
-using Microsoft.AspNetCore.Identity;
 
 namespace Forum.Services.BusinessServices
 {
