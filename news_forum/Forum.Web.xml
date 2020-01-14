@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Forum.Web</name>
+    </assembly>
+    <members>
+        <member name="T:Forum.Web.Controllers.CategoryController">
+            <summary>
+            Api Controller for everything that has to do with categories.
+            </summary>
+        </member>
+        <member name="M:Forum.Web.Controllers.CategoryController.#ctor(AutoMapper.IMapper,Forum.Services.BusinessServices.Interfaces.ICategoryService)">
+            <summary>
+             Constructor takes two parameters and is handled automatically by ASP.NET
+            </summary>
+            <param name="mapper">Constructor injection done by Services Providers</param>
+            <param name="categoryService">Constructor injection done by Services Providers</param>
+        </member>
+        <member name="M:Forum.Web.Controllers.CategoryController.GetAllCategories">
+            <summary>
+            Return all the categories available to user
+            </summary>
+            <returns>All the categories available to user that's logged in or anonymous</returns>
+        </member>
+        <member name="M:Forum.Web.Controllers.CategoryController.GetAllThreadsByCategoryName(System.String,Forum.Core.Common.PaginationRequest)">
+            <summary>
+            Get the threads with a specified Category (pagination included).
+            </summary>
+            <param name="name">Name of category</param>
+            <param name="paginationRequest">Pagination model</param>
+            <returns></returns>
+        </member>
+        <member name="M:Forum.Web.Controllers.CategoryController.CreateCategory(Forum.Web.DTO.CategoryDTO)">
+            <summary>
+            Create category if you have permission, otherwise returns an error
+            </summary>
+            <param name="model">The model of the category we want to create</param>
+            <returns>Returns the path to the newly generated category</returns>
+        </member>
+        <member name="M:Forum.Web.Controllers.CategoryController.DeleteCategoryWithNameId(System.Int32)">
+            <summary>
+             Deletes the specified category
+            </summary>
+            <param name="id">The id of the category you want to delete</param>
+            <returns>If the request was successful (user have moderator rights and category exists) returns an 
+            ok and the DTO of the category. Otherwise return badrequest</returns>
+        </member>
+        <member name="T:Forum.Web.Controllers.UsersController">
+            <summary>
+            Api to register and login user
+            </summary>
+        </member>
+        <member name="M:Forum.Web.Controllers.UsersController.#ctor(Forum.Services.BusinessServices.Interfaces.IUserService,AutoMapper.IMapper)">
+            <summary>
+            Constructor takes two parameters and is handled automatically by ASP.NET
+            </summary>
+            <param name="userService">Constructor injection done by Services Providers</param>
+            <param name="mapper">Constructor injection done by Services Providers</param>
+        </member>
+        <member name="M:Forum.Web.Controllers.UsersController.Login(Forum.Web.DTO.LoginDTO)">
+            <summary>
+            Login using a dto and returns a token that's passed to the front end for authentication
+            </summary>
+            <param name="loginDTO">The dto containing the username and the password used for logging in</param>
+            <returns>A cookie used to identify the user.</returns>
+        </member>
+        <member name="M:Forum.Web.Controllers.UsersController.Register(Forum.Web.DTO.RegisterDTO)">
+            <summary>
+            Register the user using a dto containing all the details.Also returns a token that's used to identify the user
+            </summary>
+            <param name="registerDTO">A dto containing all the information needed to identify a user.</param>
+            <returns>A cookie that's passed to the frontend to identify the user.</returns>
+        </member>
+        <member name="M:Forum.Web.Controllers.UsersController.CheckIfEmailUnique(System.String)">
+            <summary>
+            Check if the email is unique used for validation in the frontend
+            </summary>
+            <param name="mail">The email we wish to check</param>
+            <returns>Returns true if the mail doesn't exist otherwise false
+            </returns>
+        </member>
+    </members>
+</doc>

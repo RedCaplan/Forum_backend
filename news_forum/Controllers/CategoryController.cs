@@ -13,6 +13,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Forum.Web.Controllers
 {
+    /// <summary>
+    /// Api Controller for everything that has to do with categories.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class CategoryController : ControllerBase
@@ -26,6 +29,11 @@ namespace Forum.Web.Controllers
 
         #region Constructor
 
+        /// <summary>
+        ///  Constructor takes two parameters and is handled automatically by ASP.NET
+        /// </summary>
+        /// <param name="mapper">Constructor injection done by Services Providers</param>
+        /// <param name="categoryService">Constructor injection done by Services Providers</param>
         public CategoryController(IMapper mapper, ICategoryService categoryService)
         {
             _mapper = mapper;
@@ -36,6 +44,10 @@ namespace Forum.Web.Controllers
 
         #region Api methods
 
+        /// <summary>
+        /// Return all the categories available to user
+        /// </summary>
+        /// <returns>All the categories available to user that's logged in or anonymous</returns>
         [HttpGet]
         public IEnumerable<CategoryDTO> GetAllCategories()
         {
@@ -47,14 +59,23 @@ namespace Forum.Web.Controllers
             return categoryDtos;
         }
 
+        /// <summary>
+        /// Get the threads with a specified Category (pagination included).
+        /// </summary>
+        /// <param name="name">Name of category</param>
+        /// <param name="paginationRequest">Pagination model</param>
+        /// <returns></returns>
         [HttpGet("{name}")]
-        public ActionResult<IEnumerable<ThreadDTO>> GetAllThreadsByCategoryName(string name, int page = 0, int pageSize = 10)
+        public ActionResult<IEnumerable<ThreadDTO>> GetAllThreadsByCategoryName(string name, [FromQuery]PaginationRequest paginationRequest)
         {
             try
             {
-                PaginationRequest request = new PaginationRequest {PageSize = pageSize, PageIndex = page};
+                if (paginationRequest != null)
+                {
+                    paginationRequest = new PaginationRequest() {PageIndex = 0, PageSize = 10};
+                }
 
-                IEnumerable<Thread> threads = _categoryService.GetAllThreadsByCategoryName(name, request);
+                IEnumerable<Thread> threads = _categoryService.GetAllThreadsByCategoryName(name, paginationRequest);
                 IEnumerable<ThreadDTO> threadDtos = _mapper.Map<IEnumerable<Thread>, IEnumerable<ThreadDTO>>(threads);
 
                 return Ok(threadDtos);
@@ -68,10 +89,15 @@ namespace Forum.Web.Controllers
             }
         }
 
+        /// <summary>
+        /// Create category if you have permission, otherwise returns an error
+        /// </summary>
+        /// <param name="model">The model of the category we want to create</param>
+        /// <returns>Returns the path to the newly generated category</returns>
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [AuthorizeGroup("IsModerator")]
         [HttpPost]
-        public ActionResult<CategoryDTO> CreateCategory(CategoryDTO model)
+        public ActionResult<CategoryDTO> CreateCategory([FromBody]CategoryDTO model)
         {
             try
             {
@@ -93,10 +119,16 @@ namespace Forum.Web.Controllers
             }
         }
 
+        /// <summary>
+        ///  Deletes the specified category
+        /// </summary>
+        /// <param name="id">The id of the category you want to delete</param>
+        /// <returns>If the request was successful (user have moderator rights and category exists) returns an 
+        /// ok and the DTO of the category. Otherwise return badrequest</returns>
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [AuthorizeGroup("IsModerator")]
-        [HttpDelete("{name}.{id}/delete")]
-        public ActionResult<CategoryDTO> DeleteCategoryWithNameId(string name, int id)
+        [HttpDelete("{id}/delete")]
+        public ActionResult<CategoryDTO> DeleteCategoryWithNameId(int id)
         {
             try
             {

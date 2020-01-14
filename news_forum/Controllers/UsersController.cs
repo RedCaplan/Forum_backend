@@ -24,6 +24,11 @@ namespace Forum.Web.Controllers
 
         #region Constructor
 
+        /// <summary>
+        /// Constructor takes two parameters and is handled automatically by ASP.NET
+        /// </summary>
+        /// <param name="userService">Constructor injection done by Services Providers</param>
+        /// <param name="mapper">Constructor injection done by Services Providers</param>
         public UsersController(IUserService userService, IMapper mapper)
         {
             _userService = userService;
@@ -116,7 +121,7 @@ namespace Forum.Web.Controllers
         /// Check if the email is unique used for validation in the frontend
         /// </summary>
         /// <param name="mail">The email we wish to check</param>
-        /// <returns>Returns true if the mail doesn't exist otherwise fals
+        /// <returns>Returns true if the mail doesn't exist otherwise false
         /// </returns>
         [AllowAnonymous]
         [HttpGet("EmailUnique")]
