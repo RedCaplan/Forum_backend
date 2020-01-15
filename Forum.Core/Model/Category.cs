@@ -44,7 +44,7 @@ namespace Forum.Core.Model
         {
             Name = name;
             Description = description;
-            LatinName = name.CyrilicToLatin();
+            LatinName = name.CyrillicToLatin();
             Status = status;
             ParentCategoryID = parentCategoryID;
             Created = DateTime.Now;

@@ -24,12 +24,15 @@ namespace Forum.Data
         {
             _context.Database.EnsureDeleted();
             _context.Database.EnsureCreated();
-            AddUsers();
             AddCategories();
-            AddThreads();
-            AddPosts();
-            AddGroupCategory();
-            AddUserGroup();
+            if (_userManager != null)
+            {
+                AddUsers();
+                AddThreads();
+                AddPosts();
+                AddGroupCategory();
+                AddUserGroup();
+            }
         }
 
         private void AddUsers()

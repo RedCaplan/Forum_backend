@@ -11,7 +11,7 @@ namespace Forum.Core.Extensions
         static readonly string[] CyrillicToLatinU =
             "A,B,V,G,D,E,Zh,Z,I,J,K,L,M,N,O,P,R,S,T,U,F,Kh,C,Ch,Sh,Sch,J,Y,J,E,Yu,Ya".Split(',');
 
-        public static string CyrilicToLatin(this string s)
+        public static string CyrillicToLatin(this string s)
         {
             var sb = new StringBuilder((int)(s.Length * 1.5));
             foreach (char c in s)

@@ -18,7 +18,7 @@ namespace Forum.UnitTests.Data.Repositories.CategoryRepositoryTests
         }
 
         [Fact]
-        public void GetIncludesData()
+        public void GetIncludesData_WithCorrectCountOfSubCategories()
         {
             Category categoryParent = new CategoryBuilder()
                 .WithDefaultValues()
@@ -37,6 +37,27 @@ namespace Forum.UnitTests.Data.Repositories.CategoryRepositoryTests
             _categoryRepository.Insert(subCategory, true);
 
             Assert.Equal(1, _categoryRepository.GetAllWithSubCategories().First().SubCategories.Count);
+        }
+
+        [Fact]
+        public void GetIncludesData_WithCorrectNameOfSubCategory()
+        {
+            Category categoryParent = new CategoryBuilder()
+                .WithDefaultValues()
+                .Build();
+
+            _categoryRepository.Insert(categoryParent, true);
+
+            Category categoryParentRepo = _categoryRepository.GetCategoryByName(categoryParent.Name);
+
+            Category subCategory = new CategoryBuilder()
+                .ParentId(categoryParentRepo.Id)
+                .Name("Test subCategory")
+                .Description("Test Description")
+                .Build();
+
+            _categoryRepository.Insert(subCategory, true);
+
             Assert.Equal(categoryParent.Name, _categoryRepository.GetAllWithSubCategories().First().Name);
         }
     }

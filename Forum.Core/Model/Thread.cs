@@ -42,7 +42,7 @@ namespace Forum.Core.Model
             Category = category;
             Subject = subject;
             Description = description;
-            LatinName = subject.CyrilicToLatin();
+            LatinName = subject.CyrillicToLatin();
             Created = DateTime.Now;
         }
 

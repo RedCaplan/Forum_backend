@@ -17,7 +17,7 @@ namespace Forum.UnitTests.Data.Repositories.CategoryRepositoryTests
         }
 
         [Fact]
-        public void GetsExistingCategory()
+        public void GetsExistingCategory_WithCorrectId()
         {
             Category existingCategory = new CategoryBuilder()
                 .WithDefaultValues()
@@ -27,8 +27,20 @@ namespace Forum.UnitTests.Data.Repositories.CategoryRepositoryTests
 
             Category categoryFromRepo = _categoryRepository.GetCategoryByName(categoryName);
             Assert.Equal(existingCategory.ParentCategoryID, categoryFromRepo.ParentCategoryID);
+        }
 
+        [Fact]
+        public void GetsExistingCategory_WithCorrectSubCategories()
+        {
+            Category existingCategory = new CategoryBuilder()
+                .WithDefaultValues()
+                .Build();
+            _categoryRepository.Insert(existingCategory, true);
+            string categoryName = existingCategory.Name;
+
+            Category categoryFromRepo = _categoryRepository.GetCategoryByName(categoryName);
             var subCategories = categoryFromRepo.SubCategories;
+
             Assert.Equal(existingCategory.SubCategories, subCategories);
         }
 
