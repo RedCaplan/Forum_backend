@@ -1,25 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.757
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.181
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Forum.Web", "news_forum\Forum.Web.csproj", "{85CB0760-11F0-4B8C-884B-AB59AFEAFA5F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Forum.Api", "src\Forum.Api\Forum.Api.csproj", "{85CB0760-11F0-4B8C-884B-AB59AFEAFA5F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BE19F6F3-3989-4A3B-9A71-B8EC406961E3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{0F0C499E-353F-4FD4-8FD8-4B2F14B16B34}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Forum.Data", "Forum.Data\Forum.Data.csproj", "{F2B1E990-9796-433F-A8EF-B98CA9128C38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Forum.DAL", "src\Forum.DAL\Forum.DAL.csproj", "{F2B1E990-9796-433F-A8EF-B98CA9128C38}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Forum.Core", "Forum.Core\Forum.Core.csproj", "{AA087A32-1F5B-4080-9973-419CF0B7571E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Forum.Core", "src\Forum.Core\Forum.Core.csproj", "{AA087A32-1F5B-4080-9973-419CF0B7571E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Forum.Services", "Forum.Services\Forum.Services.csproj", "{D0FBC193-BB27-4A3F-9284-13D1E3831A5F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Forum.Services", "src\Forum.Services\Forum.Services.csproj", "{D0FBC193-BB27-4A3F-9284-13D1E3831A5F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Forum.Root", "Forum.Root\Forum.Root.csproj", "{88A53B13-C451-4304-AE44-72D91DFD0B63}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Forum.DependencyResolver", "src\Forum.DependencyResolver\Forum.DependencyResolver.csproj", "{88A53B13-C451-4304-AE44-72D91DFD0B63}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Forum.UnitTests", "Forum.UnitTests\Forum.UnitTests.csproj", "{9B27042A-4C00-40DB-BF22-D2D602883CF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Forum.UnitTests", "tests\Forum.UnitTests\Forum.UnitTests.csproj", "{9B27042A-4C00-40DB-BF22-D2D602883CF6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Forum.IntegrationTests", "Forum.IntegrationTests\Forum.IntegrationTests.csproj", "{149AFB8D-0A34-4812-9EEE-E83B0F81B764}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Forum.IntegrationTests", "tests\Forum.IntegrationTests\Forum.IntegrationTests.csproj", "{149AFB8D-0A34-4812-9EEE-E83B0F81B764}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

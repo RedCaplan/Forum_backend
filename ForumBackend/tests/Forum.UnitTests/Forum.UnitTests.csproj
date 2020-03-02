@@ -15,11 +15,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Forum.Core\Forum.Core.csproj" />
-    <ProjectReference Include="..\Forum.Data\Forum.Data.csproj" />
-    <ProjectReference Include="..\Forum.Root\Forum.Root.csproj" />
-    <ProjectReference Include="..\Forum.Services\Forum.Services.csproj" />
-    <ProjectReference Include="..\news_forum\Forum.Web.csproj" />
+    <ProjectReference Include="..\..\src\Forum.Api\Forum.Api.csproj" />
+    <ProjectReference Include="..\..\src\Forum.Core\Forum.Core.csproj" />
+    <ProjectReference Include="..\..\src\Forum.DAL\Forum.DAL.csproj" />
+    <ProjectReference Include="..\..\src\Forum.DependencyResolver\Forum.DependencyResolver.csproj" />
+    <ProjectReference Include="..\..\src\Forum.Services\Forum.Services.csproj" />
   </ItemGroup>
 
 </Project>

@@ -15,10 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Forum.Data\Forum.Data.csproj" />
-    <ProjectReference Include="..\Forum.Services\Forum.Services.csproj" />
+    <ProjectReference Include="..\..\src\Forum.Api\Forum.Api.csproj" />
+    <ProjectReference Include="..\..\src\Forum.DAL\Forum.DAL.csproj" />
+    <ProjectReference Include="..\..\src\Forum.Services\Forum.Services.csproj" />
     <ProjectReference Include="..\Forum.UnitTests\Forum.UnitTests.csproj" />
-    <ProjectReference Include="..\news_forum\Forum.Web.csproj" />
   </ItemGroup>
 
 </Project>
