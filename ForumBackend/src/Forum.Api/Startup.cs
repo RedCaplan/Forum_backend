@@ -54,9 +54,7 @@ namespace Forum.Web
             
             services.AddCors(options => options.AddPolicy("AllowAllOrigins", builder => builder.AllowAnyOrigin()));
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
-            Services = services.BuildServiceProvider();
+            services.AddMvc();
 
             //add jwt token authentication
             services.AddAuthentication(x => {
