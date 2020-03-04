@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace Forum.Web.Filters
+namespace Forum.Api.Filters
 {
     public class AuthorizeGroupFilter : IAuthorizationFilter
     {

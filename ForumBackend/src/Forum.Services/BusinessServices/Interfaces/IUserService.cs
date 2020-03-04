@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Forum.Core.Model;
+using Forum.DAL.Models.Entities;
 using Microsoft.AspNetCore.Identity;
 
 namespace Forum.Services.BusinessServices.Interfaces

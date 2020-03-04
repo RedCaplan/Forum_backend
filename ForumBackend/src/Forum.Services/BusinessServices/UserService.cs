@@ -4,7 +4,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Ardalis.GuardClauses;
-using Forum.Core.Model;
+using Forum.DAL.Models.Entities;
 using Forum.Services.BusinessServices.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;

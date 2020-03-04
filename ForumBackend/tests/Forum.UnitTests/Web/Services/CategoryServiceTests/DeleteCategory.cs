@@ -1,6 +1,6 @@
 ﻿using System;
-using Forum.Core.Model;
-using Forum.Data.Repository.Interfaces;
+using Forum.DAL.Models.Entities;
+using Forum.DAL.Repository.Interfaces;
 using Forum.Services.BusinessServices;
 using Forum.UnitTests.Builders;
 using Moq;

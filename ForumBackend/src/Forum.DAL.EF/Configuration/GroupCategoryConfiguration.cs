@@ -1,8 +1,8 @@
-﻿using Forum.Core.Model.EFClasses;
+﻿using Forum.DAL.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Forum.Data.Configuration
+namespace Forum.DAL.EF.Configuration
 {
     public class GroupCategoryConfiguration : IEntityTypeConfiguration<GroupCategory>
     {

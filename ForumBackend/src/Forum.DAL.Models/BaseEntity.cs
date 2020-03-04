@@ -1,6 +1,4 @@
-﻿using Forum.Core.Interfaces;
-
-namespace Forum.Core.Model
+﻿namespace Forum.DAL.Models
 {
     public class BaseEntity : IEntity
     {

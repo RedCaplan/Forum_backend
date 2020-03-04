@@ -1,20 +1,18 @@
 ﻿using System.Text;
 using AutoMapper;
 using Forum.Core.Interfaces;
-using Forum.Root;
-using Forum.Services.BusinessServices;
-using Forum.Services.BusinessServices.Interfaces;
+using Forum.DependencyResolver;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using NSwag;
 using NSwag.SwaggerGeneration.Processors.Security;
 
-namespace Forum.Web
+namespace Forum.Api
 {
     public class Startup
     {
@@ -31,10 +29,10 @@ namespace Forum.Web
         {
             CompositionRoot.InjectDependencies(services,Configuration);
 
-            services.AddScoped<ICategoryService, CategoryService>();
-            services.AddScoped<IUserService, UserService>();
             services.AddAutoMapper(typeof(Startup));
 
+            services.AddMvc(option => option.EnableEndpointRouting = false)
+                .AddNewtonsoftJson();
 
             //add api documentation
             services.AddOpenApiDocument(d => {
@@ -76,7 +74,7 @@ namespace Forum.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IDataInitizalizer dataInitizalizer)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IDataInitizalizer dataInitizalizer)
         {
             if (env.IsDevelopment())
             {

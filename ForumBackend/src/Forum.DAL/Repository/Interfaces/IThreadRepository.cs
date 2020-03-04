@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using Forum.Core.Common;
-using Forum.Core.Model;
-using Forum.Core.Model.Enums;
+using Forum.DAL.Models.Entities;
+using Forum.DAL.Models.Enums;
 
-namespace Forum.Data.Repository.Interfaces
+namespace Forum.DAL.Repository.Interfaces
 {
     public interface IThreadRepository : IGenericRepository<Thread>
     {

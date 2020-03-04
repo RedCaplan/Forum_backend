@@ -1,4 +1,4 @@
-﻿namespace Forum.Core.Model.EFClasses
+﻿namespace Forum.DAL.Models.Entities
 {
     public class UserGroup
     {

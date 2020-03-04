@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using AutoMapper;
+using Forum.Api.DTO;
+using Forum.Api.Filters.Attributes;
 using Forum.Core.Common;
-using Forum.Core.Model;
+using Forum.DAL.Models.Entities;
 using Forum.Services.BusinessServices.Interfaces;
-using Forum.Web.DTO;
-using Forum.Web.Filters.Attributes;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Forum.Web.Controllers
+namespace Forum.Api.Controllers
 {
     /// <summary>
     /// Api Controller for everything that has to do with categories.

@@ -1,10 +1,9 @@
-﻿using Forum.Core.Model;
-using Forum.Core.Model.EFClasses;
-using Forum.Data.Configuration;
+﻿using Forum.DAL.EF.Configuration;
+using Forum.DAL.Models.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Forum.Data
+namespace Forum.DAL.EF.Context
 {
     public class ApplicationDbContext : IdentityDbContext<UserAccount>
     {

@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Forum.Core.Model;
-using Forum.Core.Model.Enums;
-using Forum.Data.Repository.Interfaces;
+using Forum.DAL.EF.Context;
+using Forum.DAL.Models.Entities;
+using Forum.DAL.Models.Enums;
+using Forum.DAL.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace Forum.Data.Repository
+namespace Forum.DAL.Repository
 {
     public class PostRepository : GenericRepository<Post>, IPostRepository
     {

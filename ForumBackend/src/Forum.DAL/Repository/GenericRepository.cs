@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using Forum.Core.Model;
-using Forum.Data.Repository.Interfaces;
+using Forum.DAL.EF.Context;
+using Forum.DAL.Models;
+using Forum.DAL.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace Forum.Data.Repository
+namespace Forum.DAL.Repository
 {
     public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : BaseEntity
     {

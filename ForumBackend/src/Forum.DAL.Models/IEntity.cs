@@ -1,4 +1,4 @@
-﻿namespace Forum.Core.Interfaces
+﻿namespace Forum.DAL.Models
 {
     public interface IEntity
     {

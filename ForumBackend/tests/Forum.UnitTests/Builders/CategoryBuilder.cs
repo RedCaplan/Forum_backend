@@ -1,4 +1,4 @@
-﻿using Forum.Core.Model;
+﻿using Forum.DAL.Models.Entities;
 
 namespace Forum.UnitTests.Builders
 {

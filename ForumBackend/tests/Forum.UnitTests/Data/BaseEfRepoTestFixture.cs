@@ -1,4 +1,4 @@
-﻿using Forum.Data;
+﻿using Forum.DAL.EF.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 

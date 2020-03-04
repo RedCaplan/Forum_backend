@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Forum.Core.Model;
+using Forum.DAL.Models.Entities;
 
-namespace Forum.Data.Repository.Interfaces
+namespace Forum.DAL.Repository.Interfaces
 {
     public interface IPostRepository : IGenericRepository<Post>
     {

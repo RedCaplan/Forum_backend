@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using Forum.Core.Model;
+using Forum.DAL.Models;
 
-namespace Forum.Data.Repository.Interfaces
+namespace Forum.DAL.Repository.Interfaces
 {
     public interface IGenericRepository<TEntity> where TEntity: BaseEntity
     {

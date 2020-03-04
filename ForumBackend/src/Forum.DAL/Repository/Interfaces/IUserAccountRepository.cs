@@ -1,6 +1,6 @@
-﻿using Forum.Core.Model;
+﻿using Forum.DAL.Models.Entities;
 
-namespace Forum.Data.Repository.Interfaces
+namespace Forum.DAL.Repository.Interfaces
 {
     public interface IUserAccountRepository
     {

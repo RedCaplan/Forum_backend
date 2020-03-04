@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Forum.Web.DTO
+namespace Forum.Api.DTO
 {
     public class CategoryDTO
     {

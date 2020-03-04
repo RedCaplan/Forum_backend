@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Forum.Web.Filters.Attributes
+namespace Forum.Api.Filters.Attributes
 {
     public class AuthorizeGroupAttribute : TypeFilterAttribute
     {

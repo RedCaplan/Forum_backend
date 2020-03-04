@@ -1,8 +1,8 @@
-﻿using Forum.Core.Model;
+﻿using Forum.DAL.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Forum.Data.Configuration
+namespace Forum.DAL.EF.Configuration
 {
     public class CategoryConfiguration : IEntityTypeConfiguration<Category>
     {

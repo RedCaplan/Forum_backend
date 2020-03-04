@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using Forum.Core.Model;
-using Forum.Web.DTO;
+using Forum.Api.DTO;
+using Forum.DAL.Models.Entities;
 
-namespace Forum.Web.Mapping
+namespace Forum.Api.Mapping
 {
     public class MappingProfile : Profile
     {

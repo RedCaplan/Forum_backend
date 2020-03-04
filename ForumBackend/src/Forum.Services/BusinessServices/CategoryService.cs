@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using Ardalis.GuardClauses;
 using Forum.Core.Common;
-using Forum.Core.Model;
-using Forum.Data.Repository.Interfaces;
+using Forum.DAL.Models.Entities;
+using Forum.DAL.Repository.Interfaces;
 using Forum.Services.BusinessServices.Interfaces;
 
 namespace Forum.Services.BusinessServices

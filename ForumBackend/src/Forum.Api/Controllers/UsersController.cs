@@ -1,12 +1,12 @@
 ﻿using System.Threading.Tasks;
 using AutoMapper;
-using Forum.Core.Model;
+using Forum.Api.DTO;
+using Forum.DAL.Models.Entities;
 using Forum.Services.BusinessServices.Interfaces;
-using Forum.Web.DTO;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Forum.Web.Controllers
+namespace Forum.Api.Controllers
 {
     /// <summary>
     /// Api to register and login user

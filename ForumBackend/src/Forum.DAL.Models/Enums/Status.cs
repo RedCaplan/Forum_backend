@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Forum.Core.Model.Enums
+namespace Forum.DAL.Models.Enums
 {
     [JsonConverter(typeof(StringEnumConverter))]
     public enum Status

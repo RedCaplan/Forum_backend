@@ -1,9 +1,10 @@
 ﻿using System.Linq;
-using Forum.Core.Model;
-using Forum.Data.Repository.Interfaces;
+using Forum.DAL.EF.Context;
+using Forum.DAL.Models.Entities;
+using Forum.DAL.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace Forum.Data.Repository
+namespace Forum.DAL.Repository
 {
     public class UserAccountRepository : IUserAccountRepository
     {

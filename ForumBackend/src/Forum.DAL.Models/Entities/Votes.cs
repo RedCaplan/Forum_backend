@@ -1,4 +1,4 @@
-﻿namespace Forum.Core.Model
+﻿namespace Forum.DAL.Models.Entities
 {
     public class Votes : BaseEntity
     {

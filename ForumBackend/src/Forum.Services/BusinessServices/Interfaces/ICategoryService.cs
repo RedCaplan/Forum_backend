@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Forum.Core.Common;
-using Forum.Core.Model;
+using Forum.DAL.Models.Entities;
 
 namespace Forum.Services.BusinessServices.Interfaces
 {

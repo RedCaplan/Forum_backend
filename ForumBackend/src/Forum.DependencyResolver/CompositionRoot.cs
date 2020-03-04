@@ -1,15 +1,18 @@
 ﻿using System;
 using Forum.Core.Interfaces;
-using Forum.Core.Model;
-using Forum.Data;
-using Forum.Data.Repository;
-using Forum.Data.Repository.Interfaces;
+using Forum.DAL.EF;
+using Forum.DAL.EF.Context;
+using Forum.DAL.Models.Entities;
+using Forum.DAL.Repository;
+using Forum.DAL.Repository.Interfaces;
+using Forum.Services.BusinessServices;
+using Forum.Services.BusinessServices.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace Forum.Root
+namespace Forum.DependencyResolver
 {
     public class CompositionRoot
     {
@@ -56,6 +59,9 @@ namespace Forum.Root
                 })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultUI();
+
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IUserService, UserService>();
         }
     }
 }

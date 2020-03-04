@@ -1,6 +1,7 @@
 ﻿using System;
-using Forum.Data;
-using Forum.Web;
+using Forum.Api;
+using Forum.DAL.EF;
+using Forum.DAL.EF.Context;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;

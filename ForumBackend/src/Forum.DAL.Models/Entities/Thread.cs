@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using Forum.Core.Extensions;
-using Forum.Core.Model.Enums;
+using Forum.DAL.Models.Enums;
 
-namespace Forum.Core.Model
+namespace Forum.DAL.Models.Entities
 {
     public class Thread : BaseEntity
     {

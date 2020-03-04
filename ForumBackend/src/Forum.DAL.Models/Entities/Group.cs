@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Forum.Core.Model.EFClasses;
 
-namespace Forum.Core.Model
+namespace Forum.DAL.Models.Entities
 {
     public class Group : BaseEntity
     {

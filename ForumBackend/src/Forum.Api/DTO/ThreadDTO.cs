@@ -1,7 +1,7 @@
 ﻿using System;
-using Forum.Core.Model.Enums;
+using Forum.DAL.Models.Enums;
 
-namespace Forum.Web.DTO
+namespace Forum.Api.DTO
 {
     public class ThreadDTO
     {

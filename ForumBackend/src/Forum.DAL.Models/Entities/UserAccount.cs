@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using Forum.DAL.Models.Enums;
 using Microsoft.AspNetCore.Identity;
-using Forum.Core.Model.EFClasses;
-using Forum.Core.Model.Enums;
 
-
-namespace Forum.Core.Model
+namespace Forum.DAL.Models.Entities
 {
     public class UserAccount : IdentityUser
     {

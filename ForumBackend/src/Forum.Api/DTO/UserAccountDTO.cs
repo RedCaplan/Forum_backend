@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Forum.Core.Model.EFClasses;
+using Forum.DAL.Models.Entities;
 
-namespace Forum.Web.DTO
+namespace Forum.Api.DTO
 {
     public class UserAccountDTO
     {

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Linq;
 using Forum.Core.Interfaces;
-using Forum.Core.Model;
-using Forum.Core.Model.EFClasses;
-using Forum.Core.Model.Enums;
+using Forum.DAL.EF.Context;
+using Forum.DAL.Models.Entities;
+using Forum.DAL.Models.Enums;
 using Microsoft.AspNetCore.Identity;
 
-namespace Forum.Data
+namespace Forum.DAL.EF
 {
     public class DataInitializer : IDataInitizalizer
     {
@@ -56,6 +56,7 @@ namespace Forum.Data
         {
             var parentCategory = new Category("Community", "Community");
             _context.Categories.Add(parentCategory);
+            _context.SaveChanges();
 
             var categories = new Category[]
             {
